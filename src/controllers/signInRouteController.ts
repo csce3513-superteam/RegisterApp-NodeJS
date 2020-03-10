@@ -27,6 +27,6 @@ export const start = async (req: Request, res: Response): Promise<void> => {
 };
 
 export const signin = async (req: Request, res: Response): Promise<void> => {
-     console.log("HIT THE POST");
-     return res.redirect("/"); //changed for sprint 2
-}; 
+	console.log("HIT THE POST");
+	return res.redirect("/"); // changed for sprint 2
+};

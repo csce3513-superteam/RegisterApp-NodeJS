@@ -3,17 +3,16 @@ import * as DatabaseConnection from "../models/databaseConnection";
 import * as  ActiveUserModel from "../models/activeUserModel";
 import { ActiveUser } from "../../typeDefinitions";
 
-export const clearActive = async (session : Express.Session) => {
-  let searchTransaction: Sequelize.Transaction;
-  DatabaseConnection.createTransaction()
+export const clearActive = async (session: Express.Session) => {
+let searchTransaction: Sequelize.Transaction;
+DatabaseConnection.createTransaction()
 		.then((createdTransaction: Sequelize.Transaction) => {
-      searchTransaction = createdTransaction;
-      return ActiveUserModel.queryBySessionKey(session.id)}).then((queriedUser: ( ActiveUserModel.ActiveUserModel | null)) => {
-        if(queriedUser != null)
-        {
-          queriedUser.destroy();
-        }
-        
-      });
-
+searchTransaction = createdTransaction;
+return ActiveUserModel.queryBySessionKey(session.id); }).then((queriedUser: ( ActiveUserModel.ActiveUserModel | null)) => {
+if (queriedUser != null) {
+queriedUser.destroy();
 }
+
+});
+
+};

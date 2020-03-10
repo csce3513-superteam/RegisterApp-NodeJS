@@ -29,20 +29,20 @@ const processStartProductDetailError = (res: Response, error: any): void => {
 
 export const start = async (req: Request, res: Response): Promise<void> => {
 	return ProductQuery.queryById(req.params[ParameterLookup.ProductId])
-		.then((productsCommandResponse: CommandResponse<Product>):  CommandResponse<Product> => {
+		.then((productsCommandResponse: CommandResponse<Product>): CommandResponse<Product> => {
 
-			return productsCommandResponse}).then(async (productValues: any) => {
-				
+			return productsCommandResponse; }).then(async (productValues: any) => {
+
 				await EmployeeQuery.isElevatedUser().then((employeeCommandResponse: CommandResponse<boolean>): void => {
 					return res.render(ViewNameLookup.ProductDetail, (<ProductDetailPageResponse>{
 						product: productValues.data,
 						isElevatedUser: employeeCommandResponse.data
 					}));
 				});
-				
+
 			}).catch((error: any): void => {
 				return processStartProductDetailError(error, res);
-			});		
+			});
 };
 
 const saveProduct = async (

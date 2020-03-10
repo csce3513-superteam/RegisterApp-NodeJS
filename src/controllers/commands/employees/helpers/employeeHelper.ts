@@ -7,10 +7,10 @@ export const hashString = (toHash: string): string => {
 };
 
 export const isElevatedUser = (employee: EmployeeModel | null): boolean => {
-	if(employee){
-		if(employee.classification === EmployeeClassification.GeneralManager)
+	if (employee) {
+		if (employee.classification === EmployeeClassification.GeneralManager)
 			return true;
-		else if(employee.classification === EmployeeClassification.ShiftManager)
+		else if (employee.classification === EmployeeClassification.ShiftManager)
 			return true;
 		else
 		return false;

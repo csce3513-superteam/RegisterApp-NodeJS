@@ -28,15 +28,14 @@ export const start = async (req: Request, res: Response): Promise<void> => {
 			"Cache-Control",
 			"no-cache, max-age=0, must-revalidate, no-store");
 
-		return productsCommandResponse}).then(async (productValues: any) => {
+		return productsCommandResponse; }).then(async (productValues: any) => {
 			await EmployeeQuery.isElevatedUser().then((employeeCommandResponse: CommandResponse<boolean>): void => {
 				return res.render(ViewNameLookup.ProductListing, (<ProductListingPageResponse>{
 					products: productValues.data,
 					isElevatedUser: employeeCommandResponse.data
 				}));
 			});
-			
 		}).catch((error: any): void => {
 			return processStartProductListingError(error, res);
-		});		
+		});
 };

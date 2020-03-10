@@ -4,9 +4,9 @@ import * as EmployeeRepository from "../models/employeeModel";
 import * as EmployeeHelper from "../employees/helpers/employeeHelper";
 import * as Helper from "../helpers/helper";
 import { Resources, ResourceKey } from "../../../resourceLookup";
-export class employeeQuery {
-    
-}
+// export class employeeQuery {
+
+// }
 
 export const isElevatedUser = async (): Promise<CommandResponse<boolean>> => {
 	return EmployeeRepository.queryActiveExists()
@@ -15,7 +15,7 @@ export const isElevatedUser = async (): Promise<CommandResponse<boolean>> => {
 				status: 200,
 				data: EmployeeHelper.isElevatedUser(queriedEmployee)
 			};
-		})
+		});
 };
 
 
